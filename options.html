@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+	<title>Ustawienia</title>
+	<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/options.css" />
+</head>
+<body>
+
+   <div id="wrapper">
+      <div class="left">
+         <div class="container options">
+            <h1>Ustawienia</h1>
+
+            <div style="color: gray; text-align: center;">(ustawienia są aktualnie niedostępne)</div>
+            <br>
+
+            <table border="0">
+                <tr>
+                    <td><label for="use-notifications" title="Czestotliwosc odswiezania w minutach">Czestotliwosc odswiezania w minutach: </label></td>
+                    <td><input type="number" min="1" max="120" id="use-notifications" value="5">
+                </tr>
+                <tr>
+                    <td><label for="max-timeout" title="Maksymalny czas oczekiwania na polaczenie">Maksymalny czas oczekiwania na polaczenie: </label></td>
+                    <td><input type="number" min="1" max="120" id="max-timeout" value="5"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="max-timeout" title="Maksymalny czas oczekiwania na polaczenie">Adres IP serwera nbnotify: </label></td>
+                    <td><input type="text" id="host" value="localhost:9954"></td>
+                </tr>
+            </table>
+
+
+            <br><br>
+
+            <h1>O wtyczce</h1>
+            <p>
+               Wtyczka ta jest zdalnym sterowaniem do programu nbnotify, pozwala na łatwe zarządzanie bazą obserwowanych artykułów, wpisów blogowych i innych zdarzeń w internecie.
+            </p>
+            <p>
+               Obslugiwane strony:
+               <ul>
+                  <li>Blogi dobreprogramy.pl</li>
+                  <li>twitter.com</li>
+                  <li>Kanay RSS</li>
+               </ul>
+            </p>
+
+            <br><br>
+            <h1>O autorze</h1>
+            <p>Nazywam się Damian Kęska i jestem programistą aplikacji desktopowych, serwerowych oraz webowych. <br><br>Napisałem tą wtyczkę na własne potrzeby udostępniając przy okazji wszystkim którzy by czerpali przyjemność z jej użytkowania. <br><br>Jeśli doceniasz moją pracę możesz wpłacić jakąś dotację w ramach wdzięczności lub wnieść trochę kodu lub tłumaczeń do projektu od siebie.</p>
+         </div>
+        </div>
+
+
+      <div class="right">
+         <div class="container news">
+            <h1>Subskrybowane linki</h1>
+
+            <div id="subscribed_links"></div>
+
+         </div>
+      </div>
+
+   </div>
+
+</body>
+</html>

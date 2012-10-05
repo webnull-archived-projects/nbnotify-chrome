@@ -1,0 +1,27 @@
+{
+  "chrome_extension_name": {
+    "message": "Powiadomienia blogowe (nbnotify)"
+  },
+  "chrome_extension_description": {
+    "message": "To tylko klient do demona nbnotify, tworzy na stronach elementy służące dodawaniu linków do nbnotify"
+  },
+  "click_here": {
+    "message": "Left click to list acceptLanguages."
+  },
+  "browser_action_title": {
+    "message": "Click Me"
+  },
+  "chrome_accept_languages": {
+    "message": "$CHROME$ accepts $languages$ languages",
+    "placeholders": {
+      "chrome": {
+        "content": "Chrome",
+        "example": "Chrome"
+      },
+      "languages": {
+        "content": "$1",
+        "example": "en-US,sr,de"
+      }
+    }
+  }
+}
