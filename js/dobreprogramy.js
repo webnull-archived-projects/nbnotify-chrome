@@ -69,8 +69,8 @@ function doSubscribeUser() {
     if (adress != false)
     {
         //chrome.extension.sendRequest({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
-        chrome.extension.sendRequest({type: "addPage", link: adress}, function(response) { x = response;})
-        chrome.extension.sendRequest({type: "saveConfiguration"}, function(response) { x = response;})
+        chrome.extension.sendRequest({type: "addPage", link: adress}, function(response) { })
+        chrome.extension.sendRequest({type: "saveConfiguration"}, function(response) { })
         button = document.getElementById("subscribe_button");
         button.innerHTML = buttonDelete;
     } else {

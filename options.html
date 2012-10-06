@@ -13,22 +13,29 @@
          <div class="container options">
             <h1>Ustawienia</h1>
 
-            <div style="color: gray; text-align: center;">(ustawienia są aktualnie niedostępne)</div>
-            <br>
+            <table border="0">
+                <tr>
+                    <td><label for="use-notifications" title="Czestotliwosc sprawdzania linków">Czestotliwosc sprawdzania linków (minuty): </label></td>
+                    <td style="text-align: right;"><input type="number" min="1" max="120" id="use-notifications" value="5">
+                </tr>
+
+                <tr>
+                    <td><label for="nbnotify-host" title="Adres komputera z nbnotify">Adres IP serwera nbnotify: </label></td>
+                    <td style="text-align: right;"><input type="text" id="host" value="localhost:9954" id="nbnotify-host"></td>
+                </tr>
+            </table>
+
+            <br><div style="color: red; text-align: center;"><i>Ustawienia zaawansowane:</i></div><br>
 
             <table border="0">
                 <tr>
-                    <td><label for="use-notifications" title="Czestotliwosc odswiezania w minutach">Czestotliwosc odswiezania w minutach: </label></td>
-                    <td><input type="number" min="1" max="120" id="use-notifications" value="5">
-                </tr>
-                <tr>
-                    <td><label for="max-timeout" title="Maksymalny czas oczekiwania na polaczenie">Maksymalny czas oczekiwania na polaczenie: </label></td>
-                    <td><input type="number" min="1" max="120" id="max-timeout" value="5"></td>
+                    <td><label for="sync-time" title="Co ile synchronizować z bazą nbnotify (sekundy)">Co ile synchronizować z bazą nbnotify (sekundy): </label></td>
+                    <td style="text-align: right;"><input type="number" min="1" max="120" id="sync-time"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="max-timeout" title="Maksymalny czas oczekiwania na polaczenie">Adres IP serwera nbnotify: </label></td>
-                    <td><input type="text" id="host" value="localhost:9954"></td>
+                    <td><label for="max-timeout" title="Maksymalny czas oczekiwania na polaczenie">Maksymalny czas oczekiwania na połączenie: </label></td>
+                    <td style="text-align: right;"><input type="number" min="1" max="120" id="max-timeout"></td>
                 </tr>
             </table>
 

@@ -12,7 +12,7 @@
   "permissions": [
       "tabs",
       "notifications",
-      "http://localhost/*"
+      "http://*/*"
    ],
 
    "content_scripts": [

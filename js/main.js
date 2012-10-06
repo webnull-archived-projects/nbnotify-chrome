@@ -1,10 +1,23 @@
+// default configuration options
+if(localStorage.host == undefined)
+    localStorage.host = 'localhost:9954';
+
+if(localStorage.nbsync == undefined)
+    localStorage.nbsync = 60;
+
 var xhr = new XMLHttpRequest();
-var host = "localhost:9954";
+var host = localStorage['host'];
 var tmp = '';
 var memory = {};
+var nbconfig;
+
+function openTab(url) {
+	chrome.tabs.create({ url: url });
+	window.close();
+}
 
 function post(adress, data) {
-    d = 'Not responded yet...';
+    d = false;
 
     $.ajax({
             type: "POST",
@@ -26,9 +39,20 @@ function post(adress, data) {
 function loadMemory() {
     // transfer nbnotify database
 
-    data = '{"function": "getAllEntries", "data": ""}';
+    data = '{"function": "getConfigAndEntries", "data": ""}';
     response = post("http://"+host+"/", data);
-    memory = JSON.parse(parseRJ(response).replace(/\'/g, '"'));
+
+    if(response == false)
+    {
+        openTab(chrome.extension.getURL('connection.html'));
+        return false;
+    }
+
+    tmp = JSON.parse(parseRJ(response).replace(/\'/g, '"'));
+    memory = tmp[0];
+    nbconfig = tmp[1];
+
+    localStorage.connectiontimeout = tmp[1]['connection']['timeout']
 }
 
 // check if link is in database
@@ -46,8 +70,12 @@ function isInDatabase(link)
 
 
 function parseRJ(response) {
-    array = JSON.parse(response);
-    return array.response;
+    try {
+        array = JSON.parse(response);
+        return array.response;
+    } catch (e) {
+        return false;
+    }
 }
 
 function messageListener(request, sender, sendResponse) {
@@ -113,13 +141,39 @@ function messageListener(request, sender, sendResponse) {
             sendResponse({data: isInDatabase(request.id)})
         break;
 
+        case "nbconfig":
+            sendResponse({data: nbconfig})
+        break;
+
+        case "ping":
+            data = '{"function": "ping", "data": ""}';
+            adress = "http://"+request.adress+"/"
+            console.log("ping "+request.adress);
+
+            response = post(adress, data);
+            d = {data: parseRJ(response)};
+
+            sendResponse(d);
+        break;
+
+        case "configSetKey":
+            data = '{"function": "configSetKey", "data": {"section": "'+request.section+'", "option": "'+request.option+'", "value": "'+request.value+'"}}';
+            adress = "http://"+host+"/"
+            console.log("ping "+host);
+
+            response = post(adress, data);
+            d = {data: parseRJ(response)};
+
+            sendResponse(d);
+        break;
+
     }
 }
 
 // get nbnotify database
 loadMemory();
 chrome.extension.onRequest.addListener(messageListener);
-window.setInterval(loadMemory, 5000);
+window.setInterval(loadMemory, (localStorage.nbsync*1000));
 
 // just a test of ajax post
 //console.log(post("http://localhost:9954", '{"function": "notifyNewData", "data": {"data": "This is a test!", "title": "Change this title.", "icon": "/usr/share/path/to/icon.png", "pageid": ""}}')) 
