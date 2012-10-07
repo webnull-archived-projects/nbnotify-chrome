@@ -38,7 +38,7 @@ function createUserButton() {
 
     ubutton.addEventListener("click", doSubscribeUser, false)
 
-    chrome.extension.sendRequest({type: "isInDatabase", id: link}, function(response) { 
+    chrome.extension.sendMessage({type: "isInDatabase", id: link}, function(response) { 
         if (response.data == true)
         {
             ubutton.innerHTML = buttonDelete;
@@ -68,9 +68,9 @@ function doSubscribeUser() {
 
     if (adress != false)
     {
-        //chrome.extension.sendRequest({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
-        chrome.extension.sendRequest({type: "addPage", link: adress}, function(response) { })
-        chrome.extension.sendRequest({type: "saveConfiguration"}, function(response) { })
+        //chrome.extension.sendMessage({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
+        chrome.extension.sendMessage({type: "addPage", link: adress}, function(response) { })
+        chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
         button = document.getElementById("subscribe_button");
         button.innerHTML = buttonDelete;
     } else {
@@ -105,17 +105,17 @@ function doSubscribePost() {
 
     if (adress != false)
     {
-        chrome.extension.sendRequest({type: "isInDatabase", id: adress}, function(response) { 
+        chrome.extension.sendMessage({type: "isInDatabase", id: adress}, function(response) { 
 
             if (response.data == true)
             {
-                chrome.extension.sendRequest({type: "removePage", link: adress}, function(response) { x = response;})
-                chrome.extension.sendRequest({type: "saveConfiguration"}, function(response) { x = response;})
+                chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { x = response;})
+                chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { x = response;})
                 button = document.getElementById("subscribe_post_button");
                 button.innerHTML = buttonAdd;
             } else {
-                chrome.extension.sendRequest({type: "addPage", link: adress}, function(response) { x = response;})
-                chrome.extension.sendRequest({type: "saveConfiguration"}, function(response) { x = response;})
+                chrome.extension.sendMessage({type: "addPage", link: adress}, function(response) { x = response;})
+                chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { x = response;})
                 button = document.getElementById("subscribe_post_button");
                 button.innerHTML = buttonDelete;
             }
@@ -150,7 +150,7 @@ function createPostButton() {
 
     button.addEventListener("click", doSubscribePost, false)
 
-    chrome.extension.sendRequest({type: "isInDatabase", id: link}, function(response) { 
+    chrome.extension.sendMessage({type: "isInDatabase", id: link}, function(response) { 
 
         if (response.data == true)
         {

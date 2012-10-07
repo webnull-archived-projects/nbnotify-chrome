@@ -1,11 +1,24 @@
 function removePage(e) {
     adress = e.target.rel;
-    chrome.extension.sendRequest({type: "removePage", link: adress}, function(response) { })
+    chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { })
     listAllPlugins()
 }
 
 function listAllPlugins() {
-    chrome.extension.sendRequest({type: "memory"}, function(response) { 
+    chrome.extension.sendMessage({type: "memory"}, function(response) { 
+
+        if(response == undefined)
+        {
+            document.getElementById("subscribed_links").innerHTML = "<p>Nie można połączyć z nbnotify.</p>";
+            return false;
+        }
+
+        if(JSON.stringify(response.data) == "{}")
+        {
+            document.getElementById("subscribed_links").innerHTML = "<p>Nie można połączyć z nbnotify.</p>";
+            return false;
+        }
+
         d = response.data;
         txt = "<table>";
 
@@ -23,7 +36,7 @@ function listAllPlugins() {
         k = 0;
         while (k != n) {
             k = k+1;
-            document.getElementById('del_'+k).addEventListener("click", removePage, false);         
+            document.getElementById('del_'+k).addEventListener("click", removePage, false);
         }
     });
 }
@@ -33,13 +46,20 @@ function init() {
 }
 
 function checkHost(host) {
+
     if (host.length < 6)
     {
         $('#host').css("border", "solid orange 2px");
         return false;
     }
 
-    chrome.extension.sendRequest({type: "ping", adress: host}, function(response) {
+    chrome.extension.sendMessage({type: "ping", adress: host}, function(response) {
+
+        if (response == undefined)
+        {
+            $('#host').css("border", "solid red 2px");
+            return false;
+        }
 
         if (response.data)
         {
@@ -64,8 +84,8 @@ $(function(){
     $('#max-timeout').val(localStorage.connectiontimeout);
     $('#max-timeout').focusout(function (){
         localStorage.connectiontimeout = $('#max-timeout').val();
-        chrome.extension.sendRequest({type: "configSetKey", section: 'connection', option: 'timeout', value: localStorage.connectiontimeout}, function() {});
-        chrome.extension.sendRequest({type: "saveConfiguration"}, function() { })
+        chrome.extension.sendMessage({type: "configSetKey", section: 'connection', option: 'timeout', value: localStorage.connectiontimeout}, function() {});
+        chrome.extension.sendMessage({type: "saveConfiguration"}, function() { })
     });
 });
 

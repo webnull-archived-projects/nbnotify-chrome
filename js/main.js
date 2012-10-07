@@ -5,33 +5,41 @@ if(localStorage.host == undefined)
 if(localStorage.nbsync == undefined)
     localStorage.nbsync = 60;
 
+localStorage.connectiontimeout = 10;
+
 var xhr = new XMLHttpRequest();
 var host = localStorage['host'];
 var tmp = '';
 var memory = {};
 var nbconfig;
+var showedConnectionPopup = false;
+
+console.log("nbnotify-chrome main.js init..."); 
 
 function openTab(url) {
 	chrome.tabs.create({ url: url });
-	window.close();
 }
 
 function post(adress, data) {
     d = false;
 
-    $.ajax({
-            type: "POST",
-            url: adress,
-            async: false,
-            data: data,
-            success: function(response) { 
-                        d = response;
-                        return d;
-                    },
-            dataType: 'text'
-            });
+    try {
+        $.ajax({
+                type: "POST",
+                url: adress,
+                async: false,
+                data: data,
+                success: function(response) { 
+                            d = response;
+                            return d;
+                        },
+                dataType: 'text'
+                });
 
-    console.log("POST "+adress+" -> "+data);
+        console.log("POST "+adress+" -> "+data+" = "+d);
+    } catch (e) {
+        return false;    
+    }
 
     return d;
 }
@@ -44,7 +52,20 @@ function loadMemory() {
 
     if(response == false)
     {
-        openTab(chrome.extension.getURL('connection.html'));
+        chrome.tabs.getAllInWindow(function(tabList) {
+
+            for(tab in tabList) {
+                if (tabList[tab]['url'].indexOf("connection.html") == -1 && tabList[tab]['url'].indexOf("chrome-extension") == -1)
+                {
+                    if (showedConnectionPopup == false)
+                        openTab(chrome.extension.getURL('connection.html'));
+                        showedConnectionPopup = true
+                        return false;
+                }
+
+            }
+        });
+
         return false;
     }
 
@@ -150,6 +171,8 @@ function messageListener(request, sender, sendResponse) {
             adress = "http://"+request.adress+"/"
             console.log("ping "+request.adress);
 
+            alert(data);
+
             response = post(adress, data);
             d = {data: parseRJ(response)};
 
@@ -170,9 +193,10 @@ function messageListener(request, sender, sendResponse) {
     }
 }
 
+chrome.extension.onMessage.addListener(messageListener);
+
 // get nbnotify database
 loadMemory();
-chrome.extension.onRequest.addListener(messageListener);
 window.setInterval(loadMemory, (localStorage.nbsync*1000));
 
 // just a test of ajax post

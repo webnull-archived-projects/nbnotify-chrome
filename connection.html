@@ -1,9 +1,21 @@
 <html i18n-values="dir:textdirection;" id="uber" class="" dir="ltr">
 <head>
-<meta charset="utf-8">
-<title i18n-content="pageTitle">nbnotify - problem z połączeniem sieciowym</title>
+    <meta charset="utf-8">
+    <title i18n-content="pageTitle">nbnotify - problem z połączeniem sieciowym</title>
+	<link rel="stylesheet" type="text/css" href="css/options.css" />
+	<script type="text/javascript" src="js/connection.js"></script>
 </head>
 <body>
-    <div style="text-align: center;">Nie można połączyć się z nbnotify</div>
+    <div class="container news">
+            <h1>Brak połączenia</h1>
+
+            <p>Nie można połączyć się z serwerem <b>nbnotify</b>.<br>
+                <br><b>Sprawdź czy:</b>
+                <li>Program nbnotify został uruchomiony</li>
+                <li>Masz połączenie z internetem</li>
+                <li>Wpisany został poprawny adares serwera nbnotify (<a href="options.html" target="_blank" class="link_a">Otwórz ustawienia</a>)</li>
+                <li>Firewall na Twoim komputerze lub na serwerze nie blokuje połączenia</li>
+            </p>
+         </div>
 </body>
 </html>
