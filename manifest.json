@@ -2,7 +2,7 @@
   "name": "__MSG_chrome_extension_name__",
   "description": "__MSG_chrome_extension_description__",
   "version": "0.2",
-  "default_locale": "pl_PL",
+  "default_locale": "en",
   "options_page": "options.html",
 
    "background": {
