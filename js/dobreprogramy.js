@@ -81,6 +81,7 @@ function doSubscribeUser() {
                 chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
                 button = document.getElementById("subscribe_button");
                 button.innerHTML = buttonDelete;
+            }
             });
     } else {
         console.log("Warning: match.length < 2 in doSubscribeUser");
