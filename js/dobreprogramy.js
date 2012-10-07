@@ -68,11 +68,20 @@ function doSubscribeUser() {
 
     if (adress != false)
     {
-        //chrome.extension.sendMessage({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
-        chrome.extension.sendMessage({type: "addPage", link: adress}, function(response) { })
-        chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
-        button = document.getElementById("subscribe_button");
-        button.innerHTML = buttonDelete;
+        chrome.extension.sendMessage({type: "isInDatabase", id: adress}, function(response) { 
+            if (response.data == true)
+            {
+                chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { x = response;})
+                chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { x = response;})
+                button = document.getElementById("subscribe_post_button");
+                button.innerHTML = buttonAdd;
+            } else {
+                //chrome.extension.sendMessage({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
+                chrome.extension.sendMessage({type: "addPage", link: adress}, function(response) { })
+                chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
+                button = document.getElementById("subscribe_button");
+                button.innerHTML = buttonDelete;
+            });
     } else {
         console.log("Warning: match.length < 2 in doSubscribeUser");
     }

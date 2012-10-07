@@ -1,7 +1,6 @@
 function removePage(e) {
     adress = e.target.rel;
-    chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { })
-    listAllPlugins()
+    chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { listAllPlugins() })
 }
 
 function listAllPlugins() {
@@ -72,6 +71,16 @@ function checkHost(host) {
 }
 
 $(function(){
+    // global -> checktime
+    $('#checktime').val((localStorage.checktime/60));
+    $('#checktime').focusout(function () { 
+        localStorage.checktime = ($('#checktime').val()*60);
+        chrome.extension.sendMessage({type: "configSetKey", section: 'global', option: 'checktime', value: localStorage.checktime}, function() {});
+        chrome.extension.sendMessage({type: "saveConfiguration"}, function() { })
+    });
+    
+
+    // nbnotify adress
     $('#host').val(localStorage['host']);
     $('#host').focusout(function() { checkHost($('#host').val()); });
 

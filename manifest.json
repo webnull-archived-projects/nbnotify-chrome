@@ -17,8 +17,12 @@
 
    "content_scripts": [
        {
-            "matches": ["*://www.dobreprogramy.pl/*"],
+            "matches": ["*://www.dobreprogramy.pl/*", "*://dobreprogramy.pl/*"],
             "js": ["js/dobreprogramy.js"]
+       },
+       {
+            "matches": ["*://www.twitter.com/*", "*://twitter.com/*"],
+            "js": ["js/twitter.js"]
        }
    ],
 

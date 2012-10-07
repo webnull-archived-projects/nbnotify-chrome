@@ -74,6 +74,7 @@ function loadMemory() {
     nbconfig = tmp[1];
 
     localStorage.connectiontimeout = tmp[1]['connection']['timeout']
+    localStorage.checktime = tmp[1]['global']['checktime']
 }
 
 // check if link is in database
