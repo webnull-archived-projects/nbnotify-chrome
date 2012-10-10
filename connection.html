@@ -1,20 +1,21 @@
-<html i18n-values="dir:textdirection;" id="uber" class="" dir="ltr">
+<!DOCTYPE HTML>
+<html i18n-values="dir:textdirection" class="">
 <head>
     <meta charset="utf-8">
-    <title i18n-content="pageTitle">nbnotify - problem z połączeniem sieciowym</title>
-	<link rel="stylesheet" type="text/css" href="css/options.css" />
 	<script type="text/javascript" src="js/connection.js"></script>
+    <title i18n-content="connectionhtml_title">nbnotify - network connection problem</title>
+	<link rel="stylesheet" type="text/css" href="css/options.css" />
 </head>
 <body>
     <div class="container news">
-            <h1>Brak połączenia</h1>
+            <h1 i18n-content="no_connection">No connection to server</h1>
 
-            <p>Nie można połączyć się z serwerem <b>nbnotify</b>.<br>
-                <br><b>Sprawdź czy:</b>
-                <li>Program nbnotify został uruchomiony</li>
-                <li>Masz połączenie z internetem</li>
-                <li>Wpisany został poprawny adares serwera nbnotify (<a href="options.html" target="_blank" class="link_a">Otwórz ustawienia</a>)</li>
-                <li>Firewall na Twoim komputerze lub na serwerze nie blokuje połączenia</li>
+            <p><span i18n-content="cannot_connect_nbnotify">Cannot connect to nbnotify.</span><br><br>
+                <br><b i18n-content="check_if">Check if:</b>
+                <li i18n-content="nbnotify_not_running">nbnotify application is running</li>
+                <li i18n-content="you_have_internet_connection">Your computer is connected to network</li>
+                <li><span i18n-content="correct_adress">Server adress was correctly set in configuration</span> (<a href="options.html" target="_blank" class="link_a" i18n-content="open_settings">Open settings</a>)</li>
+                <li i18n-content="blocking_firewall">Firewall is not blocking connection on port you specified in configuration</li>
             </p>
          </div>
 </body>

@@ -1,3 +1,5 @@
+var i18n=function(){function i(b){b=b.querySelectorAll(l);for(var d,f=0;d=b[f];f++)for(var e=0;e<h.length;e++){var c=h[e],a=d.getAttribute(c);a!=null&&j[c](d,a)}}var j={"i18n-content":function(b,d){b.textContent=chrome.i18n.getMessage(d)},"i18n-values":function(b,d){for(var f=d.replace(/\s/g,"").split(/;/),e=0;e<f.length;e++){var c=f[e].match(/^([^:]+):(.+)$/);if(c){var a=c[1];c=chrome.i18n.getMessage(c[2]);if(a.charAt(0)=="."){a=a.slice(1).split(".");for(var g=b;g&&a.length>1;)g=g[a.shift()];if(g){g[a]=c;a=="innerHTML"&&i(b)}}else b.setAttribute(a,c)}}}},h=[],k;for(k in j)h.push(k);var l="["+h.join("],[")+"]";return{process:i}}();
+
 function removePage(e) {
     adress = e.target.rel;
     chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { listAllPlugins() })
@@ -8,13 +10,13 @@ function listAllPlugins() {
 
         if(response == undefined)
         {
-            document.getElementById("subscribed_links").innerHTML = "<p>Nie można połączyć z nbnotify.</p>";
+            document.getElementById("subscribed_links").innerHTML = "<p>"+chrome.i18n.getMessage("cannot_connect_nbnotify")+"</p>";
             return false;
         }
 
         if(JSON.stringify(response.data) == "{}")
         {
-            document.getElementById("subscribed_links").innerHTML = "<p>Nie można połączyć z nbnotify.</p>";
+            document.getElementById("subscribed_links").innerHTML = "<p>"+chrome.i18n.getMessage("cannot_connect_nbnotify")+"</p>";
             return false;
         }
 
@@ -25,7 +27,7 @@ function listAllPlugins() {
 
         for (i in d) {
             n = n + 1;
-            txt += '<tr><td><a href="'+d[i]+'" target="_blank">'+d[i]+'</a></td><td><a href="#" rel="'+d[i]+'" id="del_'+n+'">Usuń</a></td></tr>';
+            txt += '<tr><td><a href="'+d[i]+'" target="_blank">'+d[i]+'</a></td><td><a href="#" rel="'+d[i]+'" id="del_'+n+'">'+chrome.i18n.getMessage("delete")+'</a></td></tr>';
         }
 
         txt += "</table>";
@@ -42,6 +44,7 @@ function listAllPlugins() {
 
 function init() {
     listAllPlugins();
+    i18n.process(document);
 }
 
 function checkHost(host) {

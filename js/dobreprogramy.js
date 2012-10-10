@@ -50,14 +50,16 @@ function createUserButton() {
 // check if url adress is correct
 function checkSubscribeUser()
 {
-    var r = new RegExp("dobreprogramy\.pl\/([A-Z-a-z0-9]+)");
+    var r = new RegExp("dobreprogramy\.pl\/([A-Za-z0-9\-\_\@\;\.\:\#\!\%\&\$\?\/\,]+)");
     var match = r.exec(window.location);
 
     if(match[0] == "dobreprogramy.pl/Blog") { return false; }
 
+    if(match == null) { console.log("Invalid link in checkSubscribeUser() detected: "+window.location)+", propably it's not a blog post."; return false; }
+
     if (match.length > 1)
     {
-        return "http://"+match[0].replace("www.", "")+",Rss";
+        return "http://"+match[0].replace("www.", "").replace("#", "")+",Rss";
     }
 
     return false;
@@ -66,6 +68,8 @@ function checkSubscribeUser()
 function doSubscribeUser() {
     adress = checkSubscribeUser()
 
+    console.log("doSubscribeUser: "+adress)
+
     if (adress != false)
     {
         chrome.extension.sendMessage({type: "isInDatabase", id: adress}, function(response) { 
@@ -73,7 +77,7 @@ function doSubscribeUser() {
             {
                 chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { x = response;})
                 chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { x = response;})
-                button = document.getElementById("subscribe_post_button");
+                button = document.getElementById("subscribe_button");
                 button.innerHTML = buttonAdd;
             } else {
                 //chrome.extension.sendMessage({type: "setType", link: adress, linkType: "rss"}, function(response) { r = response;})
@@ -99,6 +103,8 @@ function checkSubscribePost()
 {
     var r = new RegExp("dobreprogramy\.pl\/([A-Za-z0-9\-\_\@\;\.\:\#\!\%\&\$\?\/\,]+),([0-9]+)\.html");
     var match = r.exec(window.location);
+
+    if(match == null) { console.log("Invalid link in checkSubscribePost() detected: "+window.location)+", propably it's not user's profile."; return false; }
 
     if (match.length > 1)
     {

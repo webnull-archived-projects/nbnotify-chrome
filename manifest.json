@@ -1,9 +1,12 @@
 {
   "name": "__MSG_chrome_extension_name__",
   "description": "__MSG_chrome_extension_description__",
-  "version": "0.2",
+  "version": "0.1",
   "default_locale": "en_US",
   "options_page": "options.html",
+  "icons": { "16": "icon.png",
+           "48": "logo.png",
+          "128": "logo.png" },
 
    "background": {
       "scripts": ["js/md5.js", "js/jquery-1.6.1.min.js", "js/main.js"]

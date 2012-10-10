@@ -1,27 +1,85 @@
 {
   "chrome_extension_name": {
-    "message": "Nice Blog Notifications client (nbnotify)"
+    "message": "Nice Blog Notifications (nbnotify)"
   },
   "chrome_extension_description": {
-    "message": "Just a client to nbnotify daemon, provides easy blog links subscribing"
+    "message": "Frontend for nbnotify (Linux application) daemon, adding and removing blog posts and comments to watching list"
   },
-  "click_here": {
-    "message": "Left click to list acceptLanguages."
+  "cannot_connect_nbnotify": {
+    "message": "Cannot connect to nbnotify."
   },
   "browser_action_title": {
-    "message": "Click Me"
+    "message": "Nice Blog Notifications (nbnotify)"
   },
-  "chrome_accept_languages": {
-    "message": "$CHROME$ accepts $languages$ languages",
-    "placeholders": {
-      "chrome": {
-        "content": "Chrome",
-        "example": "Chrome"
-      },
-      "languages": {
-        "content": "$1",
-        "example": "en-US,sr,de"
-      }
-    }
+  "settings": {
+    "message": "Settings"
+  },
+  "checktime": {
+    "message": "Fequency of checking links by server (minutes): "
+  },
+  "nbnotify_host": {
+    "message": "nbnotify server ip adress: "
+  },
+  "advanced_settings": {
+    "message": "Advanced settings:"
+  },
+  "sync_time": {
+    "message": "Synchronize frequency with nbnotify (minutes): "
+  },
+  "max_timeout": {
+    "message": "Connection timeout: "
+  },
+  "about_plugin": {
+    "message": "About"
+  },
+  "about_whatis": {
+    "message": "This plugin was designed to be a remote control for nbnotify server allowing users to easily manage subscription of blog entries, posts, and etc."
+  },
+  "supported_pages": {
+    "message": "Supported websites:"
+  },
+  "dobreprogramy_blogs": {
+    "message": "Blogs in dobreprogramy.pl domain"
+  },
+  "rss_channels": {
+    "message": "RSS channels"
+  },
+  "about_author": {
+    "message": "About author"
+  },
+  "from_author": {
+    "message": "My name is Damian Kęska, im a programmer creating desktop, server and web applications. I wrote this plugin to gain experience in Javascript, HTML and extensions programming, it was something new. If you appreciate my work you can donate to this project, or create translations, fixes or new features."
+  },
+  "subscribed_links_n": {
+    "message": "Subscribed links"
+  },
+  "connectionhtml_title": {
+    "message": "nbnotify - network connection problem"
+  },
+  "no_connection": {
+    "message": "No connection to server"
+  },
+  "check_if": {
+    "message": "Check if:"
+  },
+  "nbnotify_not_running": {
+    "message": "nbnotify application is running"
+  },
+  "you_have_internet_connection": {
+    "message": "Your computer is connected to network"
+  },
+  "correct_adress": {
+    "message": "Server adress was correctly set in configuration"
+  },
+  "open_settings": {
+    "message": "Open settings"
+  },
+  "blocking_firewall": {
+    "message": "Firewall is not blocking connection on port you specified in configuration"
+  },
+  "delete": {
+    "message": "Delete"
   }
 }
+
+

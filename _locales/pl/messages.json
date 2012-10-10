@@ -1,0 +1,85 @@
+{
+  "chrome_extension_name": {
+    "message": "Powiadomienia blogowe (nbnotify)"
+  },
+  "chrome_extension_description": {
+    "message": "To tylko klient do demona nbnotify, tworzy na stronach elementy służące dodawaniu linków do nbnotify"
+  },
+  "cannot_connect_nbnotify": {
+    "message": "Nie można połączyć z nbnotify."
+  },
+  "browser_action_title": {
+    "message": "Powiadomienia blogowe (nbnotify)"
+  },
+  "settings": {
+    "message": "Ustawienia"
+  },
+  "checktime": {
+    "message": "Częstotliwość sprawdzania linków (minuty): "
+  },
+  "nbnotify_host": {
+    "message": "Adres IP serwera nbnotify: "
+  },
+  "advanced_settings": {
+    "message": "Ustawienia zaawansowane:"
+  },
+  "sync_time": {
+    "message": "Co ile synchronizować z bazą nbnotify (sekundy): "
+  },
+  "max_timeout": {
+    "message": "Maksymalny czas oczekiwania na połączenie: "
+  },
+  "about_plugin": {
+    "message": "O wtyczce"
+  },
+  "about_whatis": {
+    "message": "Wtyczka ta jest zdalnym sterowaniem do programu nbnotify, pozwala na łatwe zarządzanie bazą obserwowanych artykułów, wpisów blogowych i innych zdarzeń w internecie."
+  },
+  "supported_pages": {
+    "message": "Obslugiwane strony:"
+  },
+  "dobreprogramy_blogs": {
+    "message": "Blogi dobreprogramy.pl:"
+  },
+  "rss_channels": {
+    "message": "Kanały RSS"
+  },
+  "about_author": {
+    "message": "O autorze"
+  },
+  "from_author": {
+    "message": "Nazywam się Damian Kęska i jestem programistą aplikacji desktopowych, serwerowych oraz webowych. Napisałem tą wtyczkę w celu udostępnienia jej szerszej społeczności a przy tym nauczeniu się czegoś nowego z dziedziny programowania webowego. Jeśli doceniasz moją pracę możesz wpłacić jakąś dotację w ramach wdzięczności lub wnieść trochę kodu lub tłumaczeń do projektu od siebie."
+  },
+  "subscribed_links_n": {
+    "message": "Subskrybowane linki"
+  },
+  "connectionhtml_title": {
+    "message": "nbnotify - problem z połączeniem sieciowym"
+  },
+  "no_connection": {
+    "message": "Brak połączenia z serwerem"
+  },
+  "check_if": {
+    "message": "Sprawdź czy:"
+  },
+  "nbnotify_not_running": {
+    "message": "Program nbnotify został uruchomiony"
+  },
+  "you_have_internet_connection": {
+    "message": "Masz połączenie z internetem"
+  },
+  "correct_adress": {
+    "message": "Wpisany został poprawny adares serwera nbnotify"
+  },
+  "open_settings": {
+    "message": "Otwórz ustawienia"
+  },
+  "blocking_firewall": {
+    "message": "Firewall na Twoim komputerze lub na serwerze nie blokuje połączenia"
+  },
+  "delete": {
+    "message": "Usuń"
+  }
+}
+
+
