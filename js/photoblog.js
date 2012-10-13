@@ -23,14 +23,11 @@ function createUserButton() {
     element = getElementsByClassName("left-panel-menu")[0]
 
     // If we aren't in user profile page
-    if(element == undefined) {
+    if(element == undefined)
         return false    
-    }
 
     if(link == false)
-    {
         return false;
-    }
 
     element.innerHTML = buttonTemplate+element.innerHTML;
 
@@ -99,6 +96,77 @@ function doSubscribeUser() {
     } else {
         console.log("Warning: match.length < 2 in doSubscribeUser");
     }
+}
+
+/* BUTTONS ON BLOGS - SUBSCRIBING RSS CHANNELS */
+
+var blogAdd = 'Subskrybuj nowe wpisy z nbnotify';
+var blogTemplate = '<a href="#" id="subscribe_blog_button">'+buttonAdd+'</a>';
+var blogDelete = 'Przestań subskrybować blog';
+
+function craeteUserBlogButton()
+{
+    element = document.getElementById('show_menu')
+
+    if(element == undefined)
+        return false;
+
+    a = checkSubscribeUser();
+    var link = a.link;
+
+    var r = new RegExp("photoblog\.pl\/([A-Za-z0-9\_\-]+)/");
+    var match = r.exec(window.location);
+
+    if(match == null)
+        return false;
+
+    login = match[1]; //get login from window.location (URL adress)
+
+    element.innerHTML = element.innerHTML.replace('<ul class="clearfix">', '<ul class="clearfix"><li>'+blogTemplate+'</li>');
+
+    ubutton = document.getElementById("subscribe_blog_button");
+    ubutton.addEventListener("click", doSubscribeBlog, false)
+
+    chrome.extension.sendMessage({type: "isInDatabase", id: "http://www.photoblog.pl/index2.php/rss-ostatnie-wpisy/"+login}, function(response) {
+        if (response.data == true)
+        {
+            ubutton.innerHTML = blogDelete;
+        }
+        
+    });
+}
+
+/* ADD subscribe button current displayed blog */
+
+function doSubscribeBlog()
+{
+    var r = new RegExp("photoblog\.pl\/([A-Za-z0-9\_\-]+)/");
+    var match = r.exec(window.location);
+
+    if(match == null || match == undefined)
+        return false;
+
+    login = match[1]; //get login from window.location (URL adress)
+    adress = "http://www.photoblog.pl/index2.php/rss-ostatnie-wpisy/"+login
+
+    button = document.getElementById("subscribe_blog_button");
+
+        chrome.extension.sendMessage({type: "isInDatabase", id: adress}, function(response) { 
+            if (response.data == true)
+            {
+                chrome.extension.sendMessage({type: "removePage", link: adress}, function(response) { })
+                chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
+                button.innerHTML = blogAdd;
+            } else {
+                chrome.extension.sendMessage({type: "setType", link: adress, linkType: "rss"}, function(response) {
+                        chrome.extension.sendMessage({type: "addPage", link: adress}, function(response) { })
+                        chrome.extension.sendMessage({type: "saveConfiguration"}, function(response) { })
+                        button.innerHTML = blogDelete; 
+                });
+                
+            }
+        });
+
 }
 
 /**
@@ -245,4 +313,5 @@ var Base64 = {
 }
 
 createUserButton();
+craeteUserBlogButton();
 //document.addEventListener('DOMContentLoaded', createUserButton);
