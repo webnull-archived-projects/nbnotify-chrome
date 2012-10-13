@@ -120,8 +120,13 @@ function messageListener(request, sender, sendResponse) {
             adress = "http://"+host+"/"
             console.log("addPage -> "+request.link+" -> "+data);
 
+            if (request.show != undefined)
+                local_link = request.show;
+            else
+                local_link = request.link;                
+
             // add to application memory
-            memory[MD5(adress)] = request.link
+            memory[MD5(local_link)] = local_link;
 
             response = post(adress, data);
             d = {data: parseRJ(response)};

@@ -26,6 +26,10 @@
        {
             "matches": ["*://www.twitter.com/*", "*://twitter.com/*"],
             "js": ["js/twitter.js"]
+       },
+       {
+            "matches": ["*://*.fbl.pl/*", "*://www.photoblog.pl/*", "*://photoblog.pl/*"],
+            "js": ["js/photoblog.js"]
        }
    ],
 
