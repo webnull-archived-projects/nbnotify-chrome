@@ -121,7 +121,7 @@ function messageListener(request, sender, sendResponse) {
             console.log("addPage -> "+request.link+" -> "+data);
 
             // add to application memory
-            memory[MD5(adress)] = adress
+            memory[MD5(adress)] = request.link
 
             response = post(adress, data);
             d = {data: parseRJ(response)};
@@ -135,7 +135,7 @@ function messageListener(request, sender, sendResponse) {
             console.log("remove -> "+request.link+" -> "+data);
 
             // add to application memory
-            delete memory[MD5(adress)]
+            delete memory[MD5(request.link)]
 
             response = post(adress, data);
             d = {data: parseRJ(response)};
@@ -171,8 +171,6 @@ function messageListener(request, sender, sendResponse) {
             data = '{"function": "ping", "data": ""}';
             adress = "http://"+request.adress+"/"
             console.log("ping "+request.adress);
-
-            alert(data);
 
             response = post(adress, data);
             d = {data: parseRJ(response)};

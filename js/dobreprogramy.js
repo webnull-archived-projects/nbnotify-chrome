@@ -117,7 +117,7 @@ function checkSubscribePost()
 function doSubscribePost() {
     // Send link to nbnotify
 
-    adress = checkSubscribePost()
+    adress = checkSubscribePost();
 
     if (adress != false)
     {
