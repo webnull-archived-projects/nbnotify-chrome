@@ -79,6 +79,12 @@
   },
   "delete": {
     "message": "Delete"
+  },
+  "cannot_connect_facebook": {
+    "message": "Cannot connect to your facebook account, check if you are logged in."
+  },
+  "enable_integration": {
+    "message": "enable integration"
   }
 }
 

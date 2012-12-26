@@ -15,7 +15,8 @@
   "permissions": [
       "tabs",
       "notifications",
-      "http://*/*"
+      "http://*/*",
+      "https://*/*"
    ],
 
    "content_scripts": [

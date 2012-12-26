@@ -79,6 +79,12 @@
   },
   "delete": {
     "message": "Usuń"
+  },
+  "cannot_connect_facebook": {
+    "message": "Nie można połączyć się z kontem facebooka, sprawdź czy jesteś zalogowany(a)"
+  },
+  "enable_integration": {
+    "message": "włącz integrację"
   }
 }
 
